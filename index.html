@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ProductivityPro - Task Manager & Planner</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Mobile Header -->
+    <div class="mobile-header">
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="mobile-logo">
+            <i class="fas fa-tasks"></i>
+            <h2>ProductivityPro</h2>
+        </div>
+        <div class="mobile-date" id="mobileDate">Today</div>
+    </div>
+
+    <!-- Main App -->
+    <div class="container" id="appContainer">
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="logo">
+                <i class="fas fa-tasks"></i>
+                <h2>ProductivityPro</h2>
+            </div>
+            
+            <div class="nav-menu">
+                <a href="#" class="nav-item active" data-tab="dashboard">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item" data-tab="calendar">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Calendar</span>
+                </a>
+                <a href="#" class="nav-item" data-tab="todo">
+                    <i class="fas fa-list-check"></i>
+                    <span>To-Do List</span>
+                </a>
+                <a href="#" class="nav-item" data-tab="projects">
+                    <i class="fas fa-project-diagram"></i>
+                    <span>Projects</span>
+                </a>
+                <a href="#" class="nav-item" data-tab="procrastination">
+                    <i class="fas fa-fist-raised"></i>
+                    <span>Focus</span>
+                </a>
+                
+                <div class="clear-btn" id="clearDataBtn">
+                    <i class="fas fa-trash-alt"></i>
+                    <span>Clear All Data</span>
+                </div>
+            </div>
+            
+            <div class="user-info">
+                <div class="user-avatar" id="userAvatar">YP</div>
+                <div class="user-details">
+                    <h4 id="displayUsername">Your Profile</h4>
+                    <p>Local User</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <div class="header">
+                <h1 id="pageTitle">Dashboard</h1>
+                <div class="date-display" id="currentDate">Monday, October 16, 2023</div>
+            </div>
+
+            <!-- Welcome Message -->
+            <div class="welcome-message">
+                <h2>Welcome to ProductivityPro!</h2>
+                <p>Your all-in-one productivity tool with calendar, task manager, project organizer, and procrastination fighter.</p>
+            </div>
+            
+            <!-- Dashboard Tab -->
+            <div class="tab-content active" id="dashboard">
+                <div class="dashboard-cards">
+                    <div class="card">
+                        <h3>Tasks Today</h3>
+                        <div class="card-content">
+                            <div class="card-number" id="todayTasksCount">0</div>
+                            <div class="card-icon">
+                                <i class="fas fa-tasks"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>Completed</h3>
+                        <div class="card-content">
+                            <div class="card-number" id="completedTasksCount">0</div>
+                            <div class="card-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>Active Projects</h3>
+                        <div class="card-content">
+                            <div class="card-number" id="activeProjectsCount">0</div>
+                            <div class="card-icon">
+                                <i class="fas fa-project-diagram"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>Productivity</h3>
+                        <div class="card-content">
+                            <div class="card-number" id="productivityScore">0%</div>
+                            <div class="card-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="todo-container">
+                    <div class="todo-header">
+                        <h2>Today's Priority Tasks</h2>
+                        <span class="date-display">Due today</span>
+                    </div>
+                    
+                    <ul class="todo-list" id="dashboardTodoList">
+                        <!-- Tasks will be added here dynamically -->
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Calendar Tab -->
+            <div class="tab-content" id="calendar">
+                <div class="calendar-header">
+                    <h2 id="calendarMonth">October 2023</h2>
+                    <div class="calendar-nav">
+                        <button id="prevMonth"><i class="fas fa-chevron-left"></i></button>
+                        <button id="todayBtn">Today</button>
+                        <button id="nextMonth"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+                
+                <div class="calendar-grid" id="calendarGrid">
+                    <!-- Calendar will be generated here -->
+                </div>
+            </div>
+            
+            <!-- To-Do List Tab -->
+            <div class="tab-content" id="todo">
+                <div class="todo-container">
+                    <div class="todo-header">
+                        <h2>My To-Do List</h2>
+                        <span class="date-display" id="todoDate">Today</span>
+                    </div>
+                    
+                    <div class="todo-input">
+                        <input type="text" id="newTaskInput" placeholder="Add a new task...">
+                        <button id="addTaskBtn"><i class="fas fa-plus"></i></button>
+                    </div>
+                    
+                    <div class="todo-filters">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="active">Active</button>
+                        <button class="filter-btn" data-filter="completed">Completed</button>
+                        <button class="filter-btn" data-filter="priority">Priority</button>
+                    </div>
+                    
+                    <ul class="todo-list" id="todoList">
+                        <!-- Tasks will be added here dynamically -->
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Project Manager Tab -->
+            <div class="tab-content" id="projects">
+                <div class="projects-grid" id="projectsGrid">
+                    <!-- Projects will be added here dynamically -->
+                </div>
+                
+                <div class="todo-container" style="margin-top: 20px;">
+                    <h2>Add New Project</h2>
+                    <div class="todo-input">
+                        <input type="text" id="newProjectInput" placeholder="Project name...">
+                        <button id="addProjectBtn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Procrastination Fighter Tab -->
+            <div class="tab-content" id="procrastination">
+                <div class="procrastination-container">
+                    <div class="timer-card">
+                        <h2>Pomodoro Timer</h2>
+                        <p>Focus for 25 minutes, then take a 5-minute break</p>
+                        
+                        <div class="timer-display" id="timerDisplay">25:00</div>
+                        
+                        <div class="timer-controls">
+                            <button class="btn-start" id="startTimer">Start</button>
+                            <button class="btn-pause" id="pauseTimer">Pause</button>
+                            <button class="btn-reset" id="resetTimer">Reset</button>
+                        </div>
+                        
+                        <div class="timer-presets">
+                            <button class="timer-preset" data-minutes="25">25 min</button>
+                            <button class="timer-preset" data-minutes="15">15 min</button>
+                            <button class="timer-preset" data-minutes="5">5 min</button>
+                        </div>
+                        
+                        <p>Sessions completed today: <strong id="sessionCount">0</strong></p>
+                    </div>
+                    
+                    <div class="motivation-card">
+                        <h3>Motivation Boost</h3>
+                        <div class="motivation-quote" id="motivationQuote">
+                            "The way to get started is to quit talking and begin doing."
+                        </div>
+                        <div class="motivation-author" id="motivationAuthor">- Walt Disney</div>
+                        
+                        <button class="btn" id="newQuoteBtn" style="margin-top: 20px; width: auto;">
+                            <i class="fas fa-sync-alt"></i> New Motivation
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="todo-container" style="margin-top: 20px;">
+                    <h2>Procrastination Tips</h2>
+                    <ul class="todo-list">
+                        <li class="todo-item">
+                            <div class="todo-text">Break large tasks into smaller, manageable steps</div>
+                        </li>
+                        <li class="todo-item">
+                            <div class="todo-text">Use the Pomodoro technique (25 mins work, 5 mins break)</div>
+                        </li>
+                        <li class="todo-item">
+                            <div class="todo-text">Eliminate distractions by turning off notifications</div>
+                        </li>
+                        <li class="todo-item">
+                            <div class="todo-text">Start with the most difficult task first (eat the frog)</div>
+                        </li>
+                        <li class="todo-item">
+                            <div class="todo-text">Reward yourself after completing tasks</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Navigation Bar -->
+    <div class="mobile-nav">
+        <a href="#" class="mobile-nav-item active" data-tab="dashboard">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="#" class="mobile-nav-item" data-tab="calendar">
+            <i class="fas fa-calendar-alt"></i>
+            <span>Calendar</span>
+        </a>
+        <a href="#" class="mobile-nav-item" data-tab="todo">
+            <i class="fas fa-list-check"></i>
+            <span>Tasks</span>
+        </a>
+        <a href="#" class="mobile-nav-item" data-tab="projects">
+            <i class="fas fa-project-diagram"></i>
+            <span>Projects</span>
+        </a>
+        <a href="#" class="mobile-nav-item" data-tab="procrastination">
+            <i class="fas fa-fist-raised"></i>
+            <span>Focus</span>
+        </a>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
